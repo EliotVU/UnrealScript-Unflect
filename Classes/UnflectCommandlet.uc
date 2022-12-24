@@ -6,12 +6,14 @@ class UnflectCommandlet extends Commandlet;
 
 var UFunctionCast FunctionCaster;
 var UClassCast ClassCaster;
+var UStructCast StructCaster;
 
 event int Main(string parms)
 {
     local Object obj;
     local UFunction uFunction;
     local UClass uClass;
+    local uStruct uStruct;
 
     // Output all memory-loaded operators
     foreach AllObjects(class'Object', obj)
@@ -33,9 +35,24 @@ event int Main(string parms)
     {
         if (Class(obj) == none) continue;
 
-        UClass = ClassCaster.Cast(Class(obj));
+        uClass = ClassCaster.Cast(Class(obj));
         log("text");
         log(uClass.ScriptText.Text);
+    }
+
+    // Uncomment for UT2004
+    // DynamicLoadObject("Engine.CacheManager", class'CacheManager', false);
+    foreach AllObjects(class'Object', obj)
+    {
+        if (obj.Class != class'Struct') continue;
+
+        uStruct = StructCaster.Cast(obj);
+        log("Struct" @ uStruct @
+            "Native:" @ uStruct.StructFlags.Native @
+            "Export:" @ uStruct.StructFlags.Export @
+            "Long:" @ uStruct.StructFlags.Long @
+            "Init:" @ uStruct.StructFlags.Init
+        );
     }
 
     return 1;
@@ -43,6 +60,10 @@ event int Main(string parms)
 
 defaultproperties
 {
+    begin object class=UStructCast name=SubStructCaster
+    end object
+    StructCaster=SubStructCaster
+
     begin object class=UFunctionCast name=SubFunctionCaster
     end object
     FunctionCaster=SubFunctionCaster

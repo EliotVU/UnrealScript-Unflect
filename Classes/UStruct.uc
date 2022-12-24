@@ -9,7 +9,16 @@ var	array<byte>		Script;
 
 var	int				TextPos;
 var	int				Line;
-var	int				StructFlags;
+var	struct EStructFlags {
+    var bool Native;
+    var bool Export;
+    var bool Long;
+    var bool Init;
+    var bool Unused1;
+    var bool Unused2;
+    var bool Unused3;
+    var bool Unused4;
+}				    StructFlags;
 
 var Property		RefLink;
 var Property		PropertyLink;
