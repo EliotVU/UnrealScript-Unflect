@@ -1,13 +1,14 @@
-class UFunction extends UStruct within UState;
+class UFunction extends UStruct within UState
+    dependson(Unflect);
 
 // protected:
-var byte               FunctionMD5Digest[16];
+var byte             FunctionMD5Digest[16];
 
-var int                FunctionFlags;
-var Primitive.Int16    NativeIndex;
-var Primitive.Int16    RepOffset;
-var	byte               OperPrecedence;
+var int              FunctionFlags;
+var Unflect.Int16    NativeIndex;
+var Unflect.Int16    RepOffset;
+var byte             OperPrecedence;
 
-var	byte               NumParms;
-var Primitive.Int16    ParmsSize;
-var Primitive.Int16    ReturnValueOffset;
+var byte             NumParms;
+var Unflect.Int16    ParmsSize;
+var Unflect.Int16    ReturnValueOffset;

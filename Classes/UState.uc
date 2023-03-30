@@ -1,7 +1,8 @@
-class UState extends UStruct;
+class UState extends UStruct
+    dependson(Unflect);
 
-var Primitive.Int64    ProbeMask;
-var Primitive.Int64    IgnoreMask;
-var int                StateFlags;
-var Primitive.Int16    LabelTableOffset;
-var UField             VfHash[256];
+var Unflect.Int64   ProbeMask;
+var Unflect.Int64   IgnoreMask;
+var int             StateFlags;
+var Unflect.Int16   LabelTableOffset;
+var UField          VfHash[256];

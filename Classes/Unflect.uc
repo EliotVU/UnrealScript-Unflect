@@ -1,4 +1,4 @@
-class Primitive extends Object
+class Unflect extends Object
     abstract;
 
 struct Int16
