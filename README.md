@@ -15,16 +15,17 @@ The source is written for Unreal Tournament 2004, but the code should compile fo
 
 ## Usage
 
-Replacing functions:
+If you need to replace a function in a class, follow these steps:
 
-* Add Unflect as a dependency for your mod.
-* Extend new class from the class where you want to replace a function.
-* **DO NOT** change function declaration and argument types / amount.
-* **DO NOT** create new local variables. It will lead to random crashes.
-  * If you need additional variables, make them global and access as `class'myNewClass'.default.myNewVariable`.
-* If you want to call or override parent code, make sure that you fill in correct class name. Aka `super(exactParentClass).PostBeginPlay()` instead of `super.PostBeginPlay()`. That will save you from runaway loop crashes.
-* Make your edits and call the replacement function:
+* Create a new class that extends the class in which the function you want to replace is located.
+* Declare that function in the created class.
+* DO NOT change the function declaration and argument types/amount.
+* DO NOT create new local variables, as this can cause random crashes. If you need additional variables, make them global and access them using the class'myNewClass'.default.myNewVariable syntax.
+* If you want to call or override parent code, make sure to always specify the desired parent class name. For example, use `super(TargetClass).PostBeginPlay() instead of super.PostBeginPlay()`. This will prevent runaway loop crashes.
+* Make your edits to the function's code, and then call the replacement function:
 
-```cpp
-class'CoreAPI'.static.ReplaceFunction(Self, "package.class.targetFunction", "myNewClass.newFunction")
+```unrealscript
+class'CoreAPI'.static.ReplaceFunction(self, "package.class.targetFunction", "myNewClass.newFunction")
 ```
+
+Following these steps will help ensure that your code changes are compatible with the rest of the codebase and do not cause unexpected crashes.
