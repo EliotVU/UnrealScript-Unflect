@@ -14,6 +14,7 @@ struct FunctionRecord
 };
 
 var private UFunctionCast FunctionCaster;
+var private UPropertyCast PropertyCaster;
 
 
 // replace a single function
@@ -80,10 +81,29 @@ private final static function string GetClassName(string input)
     return input;
 }
 
+public final static function string GetTypeMetaData(Property property) {
+    local UProperty uProperty;
+
+    uProperty = default.PropertyCaster.Cast(property);
+    // Compiler should not let you to pass invalid `Property`, but just in case
+    if (uProperty == none)
+    {
+        warn("Invalid property!");
+        return "";
+    }
+    else
+    {
+        return uProperty.CommentString;
+    }
+}
 
 defaultproperties
 {
     begin object class=UFunctionCast name=SubFunctionCaster
     end object
     FunctionCaster=SubFunctionCaster
+
+    begin object class=UPropertyCast name=SubPropertyCaster
+    end object
+    PropertyCaster=SubPropertyCaster
 }
