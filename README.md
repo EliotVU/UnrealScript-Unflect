@@ -2,7 +2,7 @@
 
 Unflect is a proof-of-concept that exploits the UnrealScript compiler to trick it into compiling an illegal class casting. For example, we can retrieve the values of strictly native fields by casting a UFunction instance into our own mirrored UFunction.
 
-![image](https://user-images.githubusercontent.com/808593/209421678-9aeb41d0-8f6b-4f93-b2f0-3b4035fd74ee.png)
+![image](Docs/media/example.png)
 
 ## Compiling
 
