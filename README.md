@@ -15,6 +15,8 @@ The source is written for Unreal Tournament 2004, but the code should compile fo
 
 ## Usage
 
+### Function Replacement
+
 If you need to replace a function in a class, follow these steps:
 
 * Create a new class that extends the class in which the function you want to replace is located.
@@ -29,3 +31,13 @@ class'CoreAPI'.static.ReplaceFunction(self, "package.class.targetFunction", "myN
 ```
 
 Following these steps will help ensure that your code changes are compatible with the rest of the codebase and do not cause unexpected crashes.
+
+### Type Metadata
+
+Works with `int`, `float`, `bool`, `byte`, `string`, `name` types, make sure that your variable name length >= 2 characters.
+
+```unrealscript
+var int MyCommentStringProperty "Hello world!";
+
+log("MetaData: " $ class'CoreAPI'.static.GetTypeMetaData(Property'MyCommentStringProperty'));
+```
