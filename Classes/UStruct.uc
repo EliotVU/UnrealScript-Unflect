@@ -1,14 +1,14 @@
 class UStruct extends UField;
 
-var UTextBuffer		ScriptText;
-var UTextBuffer		CppText;
-var UField		    Children;
-var int			    PropertiesSize;
-var name		    FriendlyName;
-var array<byte>		Script;
+var UTextBuffer     ScriptText;
+var UTextBuffer     CppText;
+var UField          Children;
+var int             PropertiesSize;
+var name            FriendlyName;
+var array<byte>     Script;
 
-var int			    TextPos;
-var int			    Line;
+var int             TextPos;
+var int             Line;
 var struct EStructFlags {
     var bool Native;
     var bool Export;
@@ -20,7 +20,7 @@ var struct EStructFlags {
     var bool Unused4;
 }                   StructFlags;
 
-var Property		RefLink;
-var Property		PropertyLink;
-var Property		ConfigLink;
-var Property		ConstructorLink;
+var Property        RefLink;
+var Property        PropertyLink;
+var Property        ConfigLink;
+var Property        ConstructorLink;
