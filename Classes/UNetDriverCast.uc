@@ -1,4 +1,4 @@
-class UNetDriverCaster extends Object;
+class UNetDriverCast extends Object;
 
 var UNetDriver NativeType;
 
