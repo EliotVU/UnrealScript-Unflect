@@ -154,9 +154,9 @@ var array<UChannel>     OpenChannels;
 var array<Actor>        SentTemporaries;
 
 // TODO test!
-final function UFileChannel GetChannel(int i)
+final function UChannel GetChannel(int i)
 {
-    return UFileChannel(Channels[i]);
+    return Channels[i];
 }
 
 // final function byte GetData(int i)
