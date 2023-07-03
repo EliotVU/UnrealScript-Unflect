@@ -4,5 +4,5 @@ class UState extends UStruct
 var Unflect.Int64   ProbeMask;
 var Unflect.Int64   IgnoreMask;
 var int             StateFlags;
-var Unflect.Int16   LabelTableOffset;
+var byte            LabelTableOffset[2];
 var UField          VfHash[256];

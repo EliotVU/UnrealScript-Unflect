@@ -2,7 +2,8 @@
  * A commandlet to quickly demonstrate and test the native-mapping.
  * - EliotVU
  */
-class UnflectCommandlet extends Commandlet;
+class UnflectCommandlet extends Commandlet
+    dependson(Unflect);
 
 var UFunctionCast FunctionCaster;
 var UClassCast ClassCaster;
