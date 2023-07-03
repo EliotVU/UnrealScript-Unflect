@@ -1,4 +1,5 @@
 class UProperty extends UField within UField
+    dependson(Unflect)
     abstract;
 
 var int                 ArrayDim;
@@ -17,3 +18,16 @@ var transient UProperty NextRef;
 var transient UProperty RepOwner;
 
 var string              CommentString;
+
+final function static UProperty AsProperty(Object object)
+{
+    local Unflect.Object reference; local Unflect.Pointer pointer;
+    local UProperty dereferenced;
+
+    // assert (bool(Property(object)));
+
+    reference.Object = object;
+    pointer = reference;
+    
+    return dereferenced;
+}

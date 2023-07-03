@@ -5,33 +5,43 @@
 class UnflectCommandlet extends Commandlet
     dependson(Unflect);
 
-var UFunctionCast FunctionCaster;
-var UClassCast ClassCaster;
-var UStructCast StructCaster;
-var UPropertyCast PropertyCaster;
+final preoperator static UFunction Function(Object object)
+{
+    return class'UFunction'.static.AsFunction(object);
+}
 
-var(MyCategory) int MyCommentStringProperty "Hello world!";
+final preoperator static UFunction From(Function object)
+{
+    return Function object;
+}
 
 event int Main(string parms)
 {
     local Object obj;
-    local UFunction uFunction;
+    local UFunction func;
     local UClass uClass;
     local UStruct uStruct;
-    local UProperty uProperty;
 
     // Output all memory-loaded operators
     foreach AllObjects(class'Object', obj)
     {
         if (Function(obj) == none) continue;
 
-        uFunction = FunctionCaster.Cast(Function(obj));
-        if ((uFunction.FunctionFlags & 0x10) == 0x10)
+        // static approach, no operator definitions are required.
+        func = class'UFunction'.static.AsFunction(obj);
+        // explicit and simple, but requires operators to be defined first.
+        // func = Function obj;
+        // with overloading, but need to cast to Function first.
+        // func = From Function(obj);
+        // legacy approach, requires a predefined subobject and caster class.
+        // func = FunctionCaster.Cast(Function(obj))
+
+        if ((func.FunctionFlags & 0x10) == 0x10)
         {
-            Log("Function: " $ uFunction @ "next Function " $ uFunction.Next);
-            Log("flags" @ uFunction.FunctionFlags);
-            Log("script size in memory" @ uFunction.Script.Length);
-            Log("friendlyname" @ uFunction.FriendlyName);
+            Log("Function: " $ func @ "next Function: " $ func.Next);
+            Log("  flags:" @ func.FunctionFlags);
+            Log("  script size in memory:" @ func.Script.Length);
+            Log("  friendlyname:" @ func.FriendlyName);
         }
     }
 
@@ -40,8 +50,8 @@ event int Main(string parms)
     {
         if (Class(obj) == none) continue;
 
-        uClass = ClassCaster.Cast(Class(obj));
-        Log("text");
+        uClass = class'UClass'.static.AsClass(obj);
+        Log("text:");
         Log(uClass.ScriptText.Text);
     }
 
@@ -51,38 +61,18 @@ event int Main(string parms)
     {
         if (obj.Class != class'Struct') continue;
 
-        uStruct = StructCaster.Cast(obj);
+        uStruct = class'UStruct'.static.AsStruct(obj);
         Log("Struct" @ uStruct @
-            "Native:" @ uStruct.StructFlags.Native @
-            "Export:" @ uStruct.StructFlags.Export @
-            "Long:" @ uStruct.StructFlags.Long @
-            "Init:" @ uStruct.StructFlags.Init
+            "  Native:" @ uStruct.StructFlags.Native @
+            "  Export:" @ uStruct.StructFlags.Export @
+            "  Long:" @ uStruct.StructFlags.Long @
+            "  Init:" @ uStruct.StructFlags.Init
         );
     }
-
-    uProperty = PropertyCaster.Cast(Property'MyCommentStringProperty');
-    Log("MyCommentStringProperty:" @ uProperty);
-    Log("MyCommentStringProperty.Category:" @ uProperty.Category);
-    Log("MyCommentStringProperty.CommentString:" @ uProperty.CommentString);
 
     return 1;
 }
 
 defaultproperties
 {
-    begin object class=UStructCast name=SubStructCaster
-    end object
-    StructCaster=SubStructCaster
-
-    begin object class=UFunctionCast name=SubFunctionCaster
-    end object
-    FunctionCaster=SubFunctionCaster
-
-    begin object class=UClassCast name=SubClassCaster
-    end object
-    ClassCaster=SubClassCaster
-
-    begin object class=UPropertyCast name=SubPropertyCaster
-    end object
-    PropertyCaster=SubPropertyCaster
 }

@@ -1,20 +1,19 @@
 @echo off
 
-set projn=Unflect
+for %%* in (.) do set project_name=%%~n*
+set project_dir=%~dp0
 
-title %projn%
+title %project_name%
 color 0F
 
 echo.
-echo Deleting compiled files %projn%
+echo Deleting compiled files %project_name%
 echo.
 cd..
 cd system
-del %projn%.u
-del %projn%.ucl
-del %projn%.int
+del %project_name%.u
+del %project_name%.ucl
+del %project_name%.int
 
-ucc.exe MakeCommandletUtils.EditPackagesCommandlet 1 %projn%
-ucc.exe editor.MakeCommandlet -EXPORTCACHE -SHOWDEP
-ucc.exe MakeCommandletUtils.EditPackagesCommandlet 0 %projn%
+ucc.exe editor.MakeCommandlet -ini="%project_dir%make.ini"
 pause

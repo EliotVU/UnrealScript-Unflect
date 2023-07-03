@@ -1,4 +1,5 @@
-class UClass extends UState within Package;
+class UClass extends UState within Package
+    dependson(Unflect);
 
 var int                 ClassFlags;
 var int                 ClassUnique;
@@ -21,3 +22,16 @@ var array<name>         HideCategories;
 var array<name>         DependentOn;
 
 var string              DefaultPropText;
+
+final function static UClass AsClass(Object object)
+{
+    local Unflect.Object reference; local Unflect.Pointer pointer;
+    local UClass dereferenced;
+
+    // assert (bool(Class(object)));
+
+    reference.Object = object;
+    pointer = reference;
+    
+    return dereferenced;
+}

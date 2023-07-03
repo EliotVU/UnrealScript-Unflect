@@ -1,4 +1,5 @@
-class UStruct extends UField;
+class UStruct extends UField
+    dependson(Unflect);
 
 var UTextBuffer     ScriptText;
 var UTextBuffer     CppText;
@@ -24,3 +25,16 @@ var Property        RefLink;
 var Property        PropertyLink;
 var Property        ConfigLink;
 var Property        ConstructorLink;
+
+final function static UStruct AsStruct(Object object)
+{
+    local Unflect.Object reference; local Unflect.Pointer pointer;
+    local UStruct dereferenced;
+
+    // assert (bool(Struct(object)));
+
+    reference.Object = object;
+    pointer = reference;
+    
+    return dereferenced;
+}

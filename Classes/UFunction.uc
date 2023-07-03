@@ -12,3 +12,16 @@ var byte OperPrecedence;
 var byte NumParms;
 var byte ParmsSize[2];
 var byte ReturnValueOffset[2];
+
+final function static UFunction AsFunction(Object object)
+{
+    local Unflect.Object reference; local Unflect.Pointer pointer;
+    local UFunction dereferenced;
+
+    // assert (bool(Function(object)));
+
+    reference.Object = object;
+    pointer = reference;
+    
+    return dereferenced;
+}
