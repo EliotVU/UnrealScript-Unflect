@@ -6,7 +6,9 @@ var UTextBuffer     CppText;
 var UField          Children;
 var int             PropertiesSize;
 var name            FriendlyName;
-var array<byte>     Script;
+// Swap if you need to modify the bytes at runtime
+// var array<byte>     Script;
+var Unflect.Array   Script;
 
 var int             TextPos;
 var int             Line;

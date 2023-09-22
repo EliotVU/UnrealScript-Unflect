@@ -40,7 +40,7 @@ event int Main(string parms)
         {
             Log("Function: " $ func @ "next Function: " $ func.Next);
             Log("  flags:" @ func.FunctionFlags);
-            Log("  script size in memory:" @ func.Script.Length);
+            Log("  script size in memory:" @ func.Script.Num);
             Log("  friendlyname:" @ func.FriendlyName);
         }
     }

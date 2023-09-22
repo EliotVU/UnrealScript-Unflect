@@ -16,4 +16,7 @@ del %project_name%.ucl
 del %project_name%.int
 
 ucc.exe editor.MakeCommandlet -ini="%project_dir%make.ini"
+
+xcopy "%project_name%.u" "%project_dir%\System\%project_name%.u" /i /y /s /e /q /b /f
+
 pause
