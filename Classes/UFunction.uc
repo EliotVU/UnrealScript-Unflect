@@ -13,6 +13,9 @@ var byte NumParms;
 var byte ParmsSize[2];
 var byte ReturnValueOffset[2];
 
+// A pointer to the instrinsic function, called if either the NativeIndex or Native flag is set. 
+var pointer Func;
+
 final function static UFunction AsFunction(Object object)
 {
     local Unflect.Object reference; local Unflect.Pointer pointer;

@@ -19,6 +19,8 @@ struct Object extends Pointer { var Object Object; };
 const UnFunction = Class'UFunction';
 
 final static function HookFunction(UFunction source, UFunction destination) {
+    local Unflect.Array script;
+    
     // de-nativify
     if ((source.FunctionFlags & FUNC_Native) != 0) {
         source.FunctionFlags = source.FunctionFlags & ~FUNC_Native;
@@ -30,7 +32,9 @@ final static function HookFunction(UFunction source, UFunction destination) {
     // source.Script.Data = destination.Script.Data;
     // source.Script.Num = destination.Script.Num;
     // source.Script.Max = destination.Script.Max;
+    script = source.Script;
     source.Script = destination.Script;
+    destination.Script = script;
 }
 
 final static function Proxify(UClass source, UClass destination) {
