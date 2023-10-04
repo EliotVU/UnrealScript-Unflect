@@ -40,3 +40,40 @@ var int MyCommentStringProperty "Hello world!";
 
 log("MetaData: " $ class'CoreAPI'.static.GetTypeMetaData(Property'MyCommentStringProperty'));
 ```
+
+### Native Classes
+
+#### NetDriver
+
+```unrealscript
+local UNetDriverCaster UNetDriverCaster;
+local UNetDriver UNetDriver;
+local UPackageMap UPackageMap;
+local ULevelCast ULevelCast;
+local ULevel ULevel;
+local object obj;
+local int i;
+
+// retrieve UNetDriver var #1
+ULevelCast = new() class'ULevelCast';
+// pass `Level` reference
+ULevel = ULevelCast.Cast(Level);
+UNetDriver = ULevel.NetDriver;
+
+// retrieve UNetDriver var #1
+foreach level.allObjects(class'object', obj) {
+    if (obj.IsA('NetDriver')) {
+        warn("GOTCHA NetDriver!");
+        break;
+    }
+}
+UNetDriverCaster = new() class'UNetDriverCaster';
+UNetDriver = UNetDriverCaster.Cast(NetDriver(obj));
+
+// do something useful
+UPackageMap = UNetDriver.MasterMap;
+log("UPackageMap.List length: " $ UPackageMap.List.Length);
+for (i = 0; i < UPackageMap.List.length; i++) {
+    log(i $ ". package - " $ UPackageMap.List[i].Parent.name);
+}
+```
