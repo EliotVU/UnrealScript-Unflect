@@ -8,8 +8,7 @@ Unflect is a proof-of-concept that exploits the UnrealScript compiler to trick i
 
 The source is written for Unreal Tournament 2004, but the code should compile for most UE2 games, possibly requiring some minor alignment changes in the native mirror classes.
 
-* Requires /System/[MakeCommandletUtils.u](https://github.com/EliotVU/UnrealScript-MakeCommandletUtils)
-* Run `make.bat` (The directory with the `/Classes/` directory has to be located at the root of the UE2 installation e.g. (`C:\\UT2004/Unflect/`).
+* Run `make.bat` (The directory with the `/Classes/` directory has to be located at the root of the UE2 installation e.g. (`C:\\UT2004/Unflect/`)
 * Run `test.bat` to confirm that everything's working.
 
 ## Usage
