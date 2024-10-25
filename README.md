@@ -40,3 +40,7 @@ var int MyCommentStringProperty "Hello world!";
 
 log("MetaData: " $ class'CoreAPI'.static.GetTypeMetaData(Property'MyCommentStringProperty'));
 ```
+
+## Derivative works
+
+* [ElitePatch](https://github.com/EliteTrials/ElitePatch) - A UT2004 patch that is activated at run-time on the server and all its clients
